@@ -12,5 +12,19 @@
     ],
     "idf.port": "/dev/tty.debug-console",
     "idf.pythonBinPath": "/Users/peter/.espressif/python_env/idf5.3_py3.9_env/bin/python",
-    "idf.toolsPath": "/Users/peter/.espressif"
+    "idf.toolsPath": "/Users/peter/.espressif",
+    "files.associations": {
+        "freertos.h": "c",
+        "esp_system.h": "c",
+        "stdio.h": "c",
+        "inttypes.h": "c",
+        "sdkconfig.h": "c",
+        "esp_flash.h": "c",
+        "task.h": "c",
+        "esp_chip_info.h": "c",
+        "lvgl.h": "c",
+        "lv_libjpeg_turbo.h": "c",
+        "esp_lvgl_port.h": "c",
+        "esp32s3_wroom_cam.h": "c"
+    }
 }
