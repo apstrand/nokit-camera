@@ -31,12 +31,12 @@ extern "C" void app_main(void)
     bsp_i2c_init();
     bsp_display_start();
     bsp_display_backlight_on(); // Set display brightness to 100%
-    
 
     // Initialize the camera
     const camera_config_t camera_config = BSP_CAMERA_DEFAULT_CONFIG;
     esp_err_t err = esp_camera_init(&camera_config);
-    if (err != ESP_OK) {
+    if (err != ESP_OK)
+    {
         ESP_LOGE(TAG, "Camera Init Failed");
         return;
     }
@@ -45,7 +45,7 @@ extern "C" void app_main(void)
     s->set_hmirror(s, 0);
 
     uint32_t cam_buff_size = BSP_LCD_H_RES * BSP_LCD_V_RES * 2;
-    uint8_t *cam_buff = (uint8_t*)heap_caps_malloc(cam_buff_size, MALLOC_CAP_SPIRAM);
+    uint8_t *cam_buff = (uint8_t *)heap_caps_malloc(cam_buff_size, MALLOC_CAP_SPIRAM);
     assert(cam_buff);
 
     // Create LVGL canvas for camera image
@@ -57,19 +57,24 @@ extern "C" void app_main(void)
     bsp_display_unlock();
 
     camera_fb_t *pic;
-    while (1) {
+    while (1)
+    {
         pic = esp_camera_fb_get();
-        if (pic) {
+        if (pic)
+        {
             esp_camera_fb_return(pic);
             bsp_display_lock(0);
             memcpy(cam_buff, pic->buf, cam_buff_size);
-            if (BSP_LCD_BIGENDIAN) {
+            if (BSP_LCD_BIGENDIAN)
+            {
                 /* Swap bytes in RGB565 */
                 lv_draw_sw_rgb565_swap(cam_buff, cam_buff_size);
             }
             lv_obj_invalidate(camera_canvas);
             bsp_display_unlock();
-        } else {
+        }
+        else
+        {
             ESP_LOGE(TAG, "Get frame failed");
         }
         vTaskDelay(1);
